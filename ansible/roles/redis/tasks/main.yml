@@ -1,0 +1,3 @@
+---
+- apt: pkg=redis-server update_cache=true
+

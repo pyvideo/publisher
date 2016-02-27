@@ -1,0 +1,10 @@
+---
+domain_name: "{{ lookup('env', 'DOMAIN_NAME') }}"
+
+app_user: "{{ lookup('env', 'APP_USER') }}"
+app_group: "{{ lookup('env', 'APP_GROUP') }}"
+app_repo: "{{ lookup('env', 'APP_REPO') }}"
+
+deploy_directory: "{{ lookup('env', 'DEPLOY_DIRECTORY') }}"
+
+

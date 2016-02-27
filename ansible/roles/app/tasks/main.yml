@@ -1,0 +1,7 @@
+---
+- name: Install app dependencies
+  pip: requirements={{ deploy_directory }}/repo/requirements.txt
+       virtualenv={{ deploy_directory }}/venv
+       executable={{ deploy_directory }}/venv/bin/pip
+  sudo_user: "{{ app_user }}"
+

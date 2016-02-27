@@ -1,0 +1,13 @@
+---
+
+- hosts: webservers
+  any_errors_fatal: True
+  sudo: yes
+  roles:
+    - os
+    - nginx
+    - redis
+    - venv
+    - git
+    - app
+

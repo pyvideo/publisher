@@ -1,0 +1,7 @@
+---
+- name: Pull code from repository
+  git: repo="{{ app_repo }}" dest="{{ deploy_directory }}"/repo
+  args:
+    accept_hostkey: yes
+    force: yes
+  sudo_user: "{{ app_user }}"

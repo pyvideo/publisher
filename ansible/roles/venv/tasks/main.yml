@@ -1,0 +1,20 @@
+---
+- name: Install pip
+  apt: name=python-pip
+
+- name: Install virtualenv
+  pip: name=virtualenv
+
+- name: Create app dir
+  file: path={{ deploy_directory }}
+        state=directory
+        mode=0755
+        owner={{ app_user }}
+        group={{ app_group }}
+
+- name: Create venv
+  shell: virtualenv -p /usr/bin/python3 venv
+  args:
+    chdir: "{{ deploy_directory }}"
+  sudo_user: "{{ app_user }}"
+
