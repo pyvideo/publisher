@@ -1,4 +1,8 @@
 ---
+
+- name: Install git
+  apt: pkg=git update_cache=true
+
 - name: Pull code from repository
   git: repo="{{ app_repo }}" dest="{{ deploy_directory }}"/repo
   args:
