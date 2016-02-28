@@ -7,7 +7,8 @@
     - os
     - nginx
     - redis
-    - venv
+    - {role: python, tags: ['python']}
+    - {role: venv, tags: ['venv']}
     - git
     - app
 

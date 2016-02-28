@@ -1,0 +1,48 @@
+---
+
+- name: Install build deps
+  apt: name={{ item }}
+  with_items:
+    - sqlite3
+    - libsqlite3-dev
+    - libreadline-dev
+    - openssl
+    - libssl-dev
+    - liblzma-dev
+    - libbz2-dev
+    - zlib1g-dev
+    - libncurses5-dev
+    - libgdbm-dev
+    - tcl8.6-dev
+    - tk8.6-dev
+
+- name: Check that /usr/local/bin/python exists
+  stat: path=/usr/local/bin/python
+  register: python_executable
+
+- name: Check what version of Python is available at /usr/local
+  shell: "/usr/local/bin/python -V"
+  register: python_version
+  when: python_executable.stat.exists
+
+- name: Download Python
+  get_url: url=https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tgz
+           dest=/tmp/python.tgz
+  when: not python_executable.stat.exists or python_version.stderr != "Python 3.5.1"
+
+- name: Unarchive remote tarball
+  unarchive: src=/tmp/python.tgz
+             dest=/tmp
+             copy=no
+  when: not python_executable.stat.exists or python_version.stderr != "Python 3.5.1"
+
+- name: Install Python
+  command: "{{ item }}"
+  args:
+    chdir: "/tmp/Python-3.5.1"
+  when: not python_executable.stat.exists or python_version.stderr != "Python 3.5.1"
+  with_items:
+    - ./configure --prefix=/usr/local
+    - make -j4
+    - make install
+

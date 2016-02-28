@@ -18,3 +18,7 @@
     chdir: "{{ deploy_directory }}"
   sudo_user: "{{ app_user }}"
 
+- name: Install Deps
+  pip: requirements="{{ deploy_directory }}/repo/requirements.txt"
+       virtualenv="{{ deploy_directory }}/venv"
+
