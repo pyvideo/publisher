@@ -13,7 +13,7 @@
         group={{ app_group }}
 
 - name: Create venv
-  shell: virtualenv -p /usr/bin/python3 venv
+  shell: virtualenv -p /usr/local/bin/python3 venv
   args:
     chdir: "{{ deploy_directory }}"
   sudo_user: "{{ app_user }}"
