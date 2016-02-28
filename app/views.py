@@ -7,7 +7,7 @@ CONTENT_KEYS = {'data_file', 'category_slug', 'media_record_slug'}
 publisher = Blueprint('publisher', __name__)
 
 
-@publisher.route('/', methods=['POST'])
+@publisher.route('/publish', methods=['POST'])
 def index():
     content = request.get_json()
 
