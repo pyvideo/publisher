@@ -38,7 +38,7 @@ celery = make_celery(app)
 
 
 @celery.task
-def publish_media_record(data_file, category_slug, media_record_slug):
+def publish_media_record(data_file):
     """
     Publish a media request.
     """
